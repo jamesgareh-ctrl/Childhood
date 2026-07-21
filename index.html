@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Groundwork — a childhood record</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --limestone:#EDE7DC;
+  --limestone-deep:#DCD3C3;
+  --limestone-line:#C7BCA8;
+  --corten:#9C4A28;
+  --corten-deep:#5E3220;
+  --ink:#282320;
+  --slate:#6E6558;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--limestone);color:var(--ink);
+  font-family:"Newsreader",Georgia,serif;font-weight:300;
+  font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;
+}
+.label{
+  font-family:"Barlow Condensed","Helvetica Neue",sans-serif;
+  text-transform:uppercase;letter-spacing:.14em;font-weight:500;
+  font-size:12px;color:var(--slate);
+}
+.shell{display:flex;min-height:100vh;align-items:stretch}
+
+/* ---------- the wall (nav) ---------- */
+.wall{
+  width:206px;flex:0 0 206px;background:var(--limestone-deep);
+  border-right:1px solid var(--limestone-line);
+  display:flex;flex-direction:column-reverse;justify-content:flex-start;
+  position:sticky;top:0;height:100vh;padding:0;overflow-y:auto;
+}
+.wall-head{padding:20px 18px 16px;border-bottom:1px solid var(--limestone-line);order:99}
+.wall-head h1{
+  font-family:"Barlow Condensed",sans-serif;font-weight:600;font-size:27px;
+  line-height:1;letter-spacing:.02em;margin:0 0 6px;
+  text-transform:uppercase;color:var(--corten-deep);
+}
+.wall-head p{margin:0;font-size:13px;color:var(--slate);line-height:1.4}
+.course{
+  appearance:none;border:0;width:100%;text-align:left;cursor:pointer;background:transparent;
+  border-top:1px solid var(--limestone-line);padding:11px 16px 11px 18px;min-height:56px;
+  display:flex;flex-direction:column;justify-content:center;gap:2px;position:relative;
+  transition:background .18s ease;font-family:"Barlow Condensed",sans-serif;
+}
+.course:hover{background:#D3C9B7}
+.course:focus-visible{outline:2px solid var(--corten);outline-offset:-3px}
+.course .age{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate)}
+.course .nm{font-size:17px;font-weight:500;letter-spacing:.03em;color:var(--ink);text-transform:uppercase;line-height:1.15}
+.course[aria-current="true"]{background:var(--limestone)}
+.course[aria-current="true"] .nm{color:var(--corten-deep)}
+.course .fill{position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--limestone-line)}
+.course .fill i{position:absolute;left:0;bottom:0;width:100%;height:0%;background:var(--corten);transition:height .4s ease}
+
+/* ---------- work ---------- */
+.work{flex:1;min-width:0;padding:44px 46px 130px;max-width:810px}
+.era-eyebrow{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:4px}
+.era-eyebrow .rule{flex:1;height:1px;background:var(--limestone-line);min-width:30px}
+h2.era-title{
+  font-family:"Barlow Condensed",sans-serif;font-weight:600;font-size:44px;
+  line-height:1.02;letter-spacing:.01em;margin:0 0 10px;
+  text-transform:uppercase;color:var(--corten-deep);
+}
+.era-intro{margin:0 0 34px;max-width:60ch;color:var(--slate);font-size:16.5px}
+.era-intro em{font-style:italic;color:var(--ink)}
+
+fieldset{border:0;padding:0;margin:0 0 34px}
+.block-head{display:flex;align-items:center;gap:10px;margin:0 0 6px;border-bottom:1px solid var(--limestone-line);padding-bottom:7px}
+.block-head .n{font-family:"Barlow Condensed",sans-serif;font-size:12px;letter-spacing:.14em;color:var(--corten);font-weight:600}
+.block-note{margin:0 0 16px;font-size:15px;color:var(--slate);font-style:italic}
+
+label.fld{display:block;margin:0 0 18px}
+label.fld > span{display:block;margin-bottom:5px}
+textarea,input[type=text]{
+  width:100%;background:#F6F2EA;border:1px solid var(--limestone-line);
+  border-left:3px solid var(--limestone-line);border-radius:0;padding:10px 12px;
+  font-family:"Newsreader",Georgia,serif;font-size:16.5px;font-weight:300;
+  color:var(--ink);line-height:1.55;resize:vertical;
+  transition:border-color .15s ease,background .15s ease;
+}
+textarea:focus,input[type=text]:focus{outline:none;background:#FFFCF6;border-left-color:var(--corten)}
+textarea{min-height:88px}
+
+.jog{background:#E5DDCF;border-left:3px solid var(--corten);padding:14px 16px;margin:0 0 26px}
+.jog p{margin:0 0 9px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{
+  font-family:"Barlow Condensed",sans-serif;font-size:13.5px;letter-spacing:.03em;
+  background:transparent;border:1px solid var(--limestone-line);padding:3px 9px;color:var(--slate);
+}
+
+.entry{border:1px solid var(--limestone-line);border-top:3px solid var(--corten);background:#F6F2EA;padding:16px 16px 2px;margin:0 0 14px;position:relative}
+.entry .row{display:flex;gap:12px;flex-wrap:wrap}
+.entry .row > *{flex:1;min-width:150px}
+.del{position:absolute;top:8px;right:8px;background:none;border:0;cursor:pointer;font-family:"Barlow Condensed",sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--slate);padding:4px 6px}
+.del:hover{color:var(--corten)}
+.add{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.12em;font-size:13px;font-weight:500;background:transparent;border:1px dashed var(--limestone-line);color:var(--corten);padding:9px 16px;cursor:pointer;width:100%}
+.add:hover{border-color:var(--corten);background:#E5DDCF}
+.empty{color:var(--slate);font-style:italic;margin:0 0 14px;font-size:15.5px}
+
+.bar{position:fixed;left:206px;right:0;bottom:0;background:var(--limestone-deep);border-top:1px solid var(--limestone-line);padding:10px 46px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;z-index:5}
+.bar .status{flex:1;min-width:110px}
+.btn{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.12em;font-size:13px;font-weight:500;padding:8px 15px;cursor:pointer;background:var(--corten);color:#F6F2EA;border:1px solid var(--corten)}
+.btn:hover{background:var(--corten-deep);border-color:var(--corten-deep)}
+.btn.ghost{background:transparent;color:var(--corten-deep);border-color:var(--limestone-line)}
+.btn.ghost:hover{background:#D3C9B7}
+.nav-ends{display:flex;gap:10px;margin-top:40px;border-top:1px solid var(--limestone-line);padding-top:18px}
+
+.notice{border:1px solid var(--limestone-line);border-left:3px solid var(--corten);background:#E5DDCF;padding:12px 16px;margin:0 0 28px;font-size:15.5px}
+
+@media (max-width:860px){
+  .shell{flex-direction:column}
+  .wall{width:100%;flex:none;height:auto;position:static;flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--limestone-line)}
+  .wall-head{display:none}
+  .course{min-width:136px;border-top:0;border-left:1px solid var(--limestone-line);padding:10px 14px}
+  .course .fill{left:0;right:0;top:auto;bottom:0;width:auto;height:3px}
+  .course .fill i{bottom:0;left:0;height:100%;width:0%;transition:width .4s ease}
+  .work{padding:24px 20px 160px}
+  h2.era-title{font-size:34px}
+  .bar{left:0;padding:10px 20px}
+  .mobile-head{display:block}
+}
+.mobile-head{display:none;padding:20px 20px 0}
+.mobile-head h1{font-family:"Barlow Condensed",sans-serif;font-weight:600;font-size:26px;text-transform:uppercase;margin:0;color:var(--corten-deep);letter-spacing:.02em}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media print{
+  .wall,.bar,.add,.del,.nav-ends,.mobile-head,.jog,.notice{display:none!important}
+  .work{max-width:none;padding:0}
+  body{font-size:12pt}
+  textarea,input{border:0;border-bottom:1px solid #ccc;background:none}
+}
+</style>
+</head>
+<body>
+
+<div class="mobile-head"><h1>Groundwork</h1></div>
+
+<div class="shell">
+  <nav class="wall" id="wall" aria-label="Sections">
+    <div class="wall-head">
+      <h1>Groundwork</h1>
+      <p>A childhood, laid course by course. Start anywhere.</p>
+    </div>
+  </nav>
+  <main class="work" id="work"></main>
+</div>
+
+<div class="bar">
+  <span class="status label" id="status">Ready</span>
+  <button class="btn ghost" id="exportBtn">Export as text</button>
+  <button class="btn ghost" id="printBtn">Print</button>
+</div>
+
+<script>
+/* ============================================================
+   Groundwork — a childhood record.
+   Everything you type is saved in THIS browser, on THIS device,
+   using localStorage. Nothing is sent anywhere. It is private
+   to you and to whoever else uses this same browser profile.
+
+   Because it's local only:
+     • it won't appear on your other devices
+     • clearing browser data will erase it
+   So use "Export as text" now and then to keep a copy safe.
+   ============================================================ */
+
+const KEY = 'groundwork:v1';
+
+const store = {
+  load(){
+    try{ const raw = localStorage.getItem(KEY); return raw ? JSON.parse(raw) : null; }
+    catch(e){ return null; }
+  },
+  save(o){
+    try{ localStorage.setItem(KEY, JSON.stringify(o)); return true; }
+    catch(e){ return false; }
+  }
+};
+
+/* ============================================================
+   CONTENT
+   ============================================================ */
+const ERAS = [
+  {
+    id:'roots', name:'Roots', age:'Before you remember',
+    intro:'Most of this you were told rather than saw. Write it down anyway — <em>the stories a family repeats are themselves a kind of fact.</em>',
+    fields:[
+      {k:'born', t:'Where and when you were born', ph:'Town, hospital, year, time of day if anyone ever mentioned it', rows:2},
+      {k:'household', t:'Who was in the house', ph:'Parents, siblings, grandparents, lodgers, pets. Ages if you know them.', rows:3},
+      {k:'work', t:'What the adults did for a living', ph:'And what that meant day to day — shifts, travel, money tight or not', rows:3},
+      {k:'stories', t:'The stories told about you as a baby', ph:'The ones repeated at every gathering. Who tells them, and what they seem to be saying about you.', rows:4},
+      {k:'reflect', t:'Reflection — what was the family already expecting of you?', ph:'Firstborn, the quiet one, the sporty one, the one like Grandad. Labels arrive early.', rows:4, reflect:true}
+    ],
+    jog:['Family photos on the wall','A house you only know from pictures','Your name — who chose it, why','What was happening in the world that year','Grandparents you never met'],
+    fam:{
+      note:'You weren\'t watching yet, so this is hearsay — write what you\'ve pieced together since.',
+      fields:[
+        {k:'famstate', t:'What state the family was in when you arrived', ph:'Newly together or years in? Settled or struggling? Planned, or a surprise? Who else already needed looking after.', rows:5},
+        {k:'famdyn', t:'The dynamics you\'ve since worked out were already running', ph:'Who held the power, who kept the peace, which relatives were close and which weren\'t speaking. Things that were true before you turned up and shaped what you walked into.', rows:5}
+      ]
+    },
+    lists:[]
+  },
+
+  {
+    id:'household', name:'Household', age:'All the way through',
+    intro:'The longest section, and the one worth taking slowly. This runs across every age rather than sitting inside one — so come back to it as the other courses jog things loose. <em>Write about people as they were, not as you\'ve since decided to think of them.</em>',
+    fields:[
+      {k:'houses', t:'The houses you lived in', ph:'Each one: where, roughly which years, what it was like. The room you\'d go to be on your own.', rows:4},
+      {k:'kitchen', t:'Mealtimes', ph:'Who cooked, who sat where, whether the telly was on, whether you all ate together, what was said at the table', rows:4},
+      {k:'week', t:'The shape of a week', ph:'School run, work patterns, Friday nights, Saturday jobs, Sunday. Church, clubs, matches, the pub.', rows:4},
+      {k:'year', t:'The shape of a year', ph:'Christmas, birthdays, holidays — where you went, who came, what was always the same', rows:4},
+      {k:'money', t:'Money — how it was in the house and how it was talked about', ph:'Comfortable, stretched, hidden, argued about. Pocket money. What you learned about spending and worth.', rows:4},
+      {k:'rules', t:'Rules and discipline', ph:'Who set them, who enforced them, what happened when you broke them. Shouting, silence, grounding, a look.', rows:4},
+      {k:'rows', t:'What conflict looked like', ph:'What the rows were about, how loud, how they ended, whether anyone apologised, who you went to afterwards', rows:4},
+      {k:'unsaid', t:'What was never discussed', ph:'Every family has a list. Illness, money, a relative, feelings, something that happened before you were born.', rows:3},
+      {k:'affection', t:'How affection and approval were shown', ph:'Said out loud, or through lifts, meals, and doing things together? What counted as praise?', rows:4},
+      {k:'trouble', t:'What happened when something went wrong', ph:'Illness, redundancy, a death, a separation. Who held it together and how you were told — or weren\'t.', rows:4},
+      {k:'role', t:'Your role in the family', ph:'Peacemaker, achiever, entertainer, invisible one, responsible one, the difficult one. Who assigned it?', rows:4, reflect:true},
+      {k:'normal', t:'Reflection — what did you assume was normal that turned out not to be?', ph:'Usually spotted at someone else\'s house, or much later. Both directions count — good and bad.', rows:4, reflect:true},
+      {k:'carried', t:'Reflection — what have you kept, and what did you set out to do differently?', ph:'In your own home now. Be specific — a habit, a phrase, a standard, a thing you refuse to do.', rows:5, reflect:true}
+    ],
+    jog:['The sound of the front door','Who got the good chair','A phrase one parent always said','Sunday afternoon','The car and who drove it','What was in the fridge','A relative who visited','Being sent to your room','Whose job the washing up was','A family argument you weren\'t supposed to hear','What the house smelled like','Who you told things to first'],
+    lists:['family','rituals','moments']
+  },
+
+  {
+    id:'first', name:'First ground', age:'Roughly 4–7',
+    intro:'Starting school. The first world you navigated without a parent in the room.',
+    fields:[
+      {k:'school', t:'School — the name, the walk, the classroom', ph:'Who took you. What the building smelled like. Where you sat.', rows:4},
+      {k:'days', t:'What an ordinary day looked like', ph:'Getting up, the journey, dinner, bedtime routine, TV', rows:4},
+      {k:'fun', t:'What you did for fun', ph:'Toys, games, the thing you played until it broke', rows:3},
+      {k:'hard', t:'What was hard or frightening', ph:'It counts even if adults thought it was small', rows:3},
+      {k:'reflect', t:'Reflection — how did you learn to get on with people here?', ph:'Did you join in, hang back, lead, follow, negotiate? Does any of that still sound like you?', rows:4, reflect:true}
+    ],
+    jog:['Smell of the school hall','Dinner ladies','A birthday party','Being ill on the sofa','A particular jumper or pair of shoes','Car journeys'],
+    fam:{
+      note:'At this age the family is simply the weather — you had nothing to compare it against. Describe the weather.',
+      fields:[
+        {k:'famlife', t:'What family life felt like at this age', ph:'Busy, calm, loud, tense, warm. Who was around most. Who you wanted when you were upset, and who you got.', rows:5},
+        {k:'famdyn', t:'The dynamics between everyone, as far as you could tell', ph:'How your parents were with each other. Where you sat among the siblings. Who was in favour and who was in trouble.', rows:5},
+        {k:'famyou', t:'Where you fitted into it', ph:'The baby, the easy one, the handful. What got you attention, and what you did to get more of it.', rows:4}
+      ]
+    },
+    lists:['people','moments']
+  },
+  {
+    id:'junior', name:'Finding out', age:'Roughly 8–11',
+    intro:'The years you started to have a self of your own — opinions, obsessions, a best friend, and the first sense that families differ.',
+    fields:[
+      {k:'school', t:'School and the teachers who mattered', ph:'Good and bad. Who saw something in you, who got it wrong.', rows:4},
+      {k:'friends', t:'Your friends and where you spent time', ph:'Whose house, which field, what you did there for hours', rows:4},
+      {k:'obsession', t:'What you were obsessed with', ph:'A sport, a hobby, collecting, a band, a bike, taking things apart', rows:3},
+      {k:'good', t:'What you were told you were good at', ph:'And whether you believed it', rows:3},
+      {k:'change', t:'Anything that changed', ph:'Moves, new schools, illness, separation, a birth, a death, money shifting', rows:4},
+      {k:'reflect', t:'Reflection — where did you get your sense of worth from?', ph:'Being useful, clever, funny, fast, good. Whose approval were you actually after?', rows:4, reflect:true}
+    ],
+    jog:['A den or a hiding place','Bikes and how far you were allowed to go','Something you saved up for','Being picked, or not picked','A teacher who told you off','What was on TV after school'],
+    fam:{
+      note:'This is usually the age you first went into someone else\'s house and clocked that families run differently.',
+      fields:[
+        {k:'famlife', t:'What family life was like at this age', ph:'What had changed since you were small. What the house was like on a normal Tuesday.', rows:5},
+        {k:'famdyn', t:'The dynamics — who got on with whom', ph:'Alliances, rivalries, whose side you took. Whether your parents were a united front. Which sibling you shared things with and which you didn\'t.', rows:5},
+        {k:'famcompare', t:'What you noticed at other people\'s houses', ph:'What they did that yours didn\'t, or the other way round. What you envied. What made you glad to get home.', rows:4}
+      ]
+    },
+    lists:['people','moments']
+  },
+  {
+    id:'shift', name:'The shift', age:'Roughly 11–14',
+    intro:'Big school, a bigger world, and a body that changed without asking. Usually the messiest section — take it slowly.',
+    fields:[
+      {k:'school', t:'Moving up — the new school', ph:'Who you went with, who you lost, how it felt in week one', rows:4},
+      {k:'fit', t:'Where you fitted, and where you didn\'t', ph:'Groups, sets, teams, the pecking order and where you sat in it', rows:4},
+      {k:'body', t:'Your body and how you felt about it', ph:'Early or late, big or small, sporty or not. What you were self-conscious about.', rows:3},
+      {k:'rules', t:'Rules you kept and rules you broke', ph:'First real risks. What you got away with, what you didn\'t.', rows:3},
+      {k:'reflect', t:'Reflection — what did you learn to hide?', ph:'Most of us build a public version around now. What went behind it, and is any of it still there?', rows:4, reflect:true}
+    ],
+    jog:['Getting the bus alone','Music you claimed as yours','A humiliation you still wince at','A teacher who backed you','Falling out with a friend','Money of your own'],
+    fam:{
+      note:'The period where most people start pushing against the family rather than living inside it. Often the hardest bit to write honestly, in either direction.',
+      fields:[
+        {k:'famlife', t:'What home was like now', ph:'Where you spent your time in the house. How much you told them. Whether you wanted to be there.', rows:5},
+        {k:'famdyn', t:'The dynamics as they shifted', ph:'What you started arguing about and with whom. Who you could still talk to. Whether the adults\' own relationships were changing — work, health, money, each other.', rows:5},
+        {k:'famsib', t:'Brothers and sisters at this age', ph:'Closer or further apart. Comparisons made out loud. Who was doing better in whose eyes.', rows:4},
+        {k:'famhide', t:'What you kept from them, and why', ph:'And whether that was about them or about you', rows:4}
+      ]
+    },
+    lists:['people','moments']
+  },
+  {
+    id:'leaving', name:'Setting out', age:'Roughly 15–18',
+    intro:'Exams, decisions, and the first draft of an adult. The end of childhood, whether or not it felt like it at the time.',
+    fields:[
+      {k:'exams', t:'Exams, subjects, results', ph:'What you chose and why. Who influenced it. How the results landed.', rows:4},
+      {k:'life', t:'Life outside school', ph:'Jobs, sport, going out, driving, relationships, where you disappeared to', rows:4},
+      {k:'plan', t:'What you thought you\'d become', ph:'The plan at 17 — yours or someone else\'s', rows:3},
+      {k:'listen', t:'Who you listened to', ph:'A parent, a coach, a boss, a friend, a book. What they said that stuck.', rows:3},
+      {k:'end', t:'How childhood actually ended', ph:'A date, a move, a job, or a moment you knew things had changed', rows:4},
+      {k:'reflect', t:'Reflection — what did you leave home believing about yourself?', ph:'True or not. Useful or not. Say it plainly.', rows:4, reflect:true}
+    ],
+    jog:['First wage packet','A car or a bike','A trip without parents','A rejection','What you argued with your parents about','The last time you felt like a kid'],
+    fam:{
+      note:'By now you could see them as people rather than fixtures. Write what you saw.',
+      fields:[
+        {k:'famlife', t:'Family life as you were on your way out', ph:'How much you were actually there. What the atmosphere was. What they made of who you were becoming.', rows:5},
+        {k:'famdyn', t:'The dynamics by the end', ph:'Who backed your choices and who resisted them. Any expectations about what you\'d do next, spoken or otherwise. Who you\'d become closer to, and who you\'d lost.', rows:5},
+        {k:'famsee', t:'What you\'d started to understand about them as adults', ph:'Their disappointments, pressures, marriages, health, the things they\'d given up. What you only saw later.', rows:5},
+        {k:'famleave', t:'How you left, and how that was handled', ph:'Encouraged, resisted, barely noticed. What was said at the door.', rows:4}
+      ]
+    },
+    lists:['people','moments']
+  },
+  {
+    id:'threads', name:'Threads', age:'Looking back',
+    intro:'The part that does the work. Fill the earlier courses first, read them back, <em>then</em> answer these.',
+    fields:[
+      {k:'repeat', t:'What repeats across the sections?', ph:'A pattern of behaviour, a role you kept taking, a fear that shows up in different clothes', rows:4},
+      {k:'gave', t:'What your childhood gave you that you still use', ph:'Skills, resilience, humour, standards, a work ethic, a way of reading a room', rows:4},
+      {k:'cost', t:'What it cost you', ph:'Habits that protected you then and get in the way now. Be fair rather than harsh.', rows:4},
+      {k:'shaped', t:'Who shaped you most, and how', ph:'Including people who were only there briefly', rows:4},
+      {k:'inherit', t:'What you\'ve passed on, deliberately or not', ph:'To your own children, your work, the way you handle conflict or praise', rows:4},
+      {k:'letter', t:'What you\'d say to yourself at eleven', ph:'A few sentences. No advice you wouldn\'t have taken.', rows:5},
+      {k:'gaps', t:'What you still can\'t remember, or can\'t ask about', ph:'Worth naming. Sometimes there\'s someone still alive who could fill it in.', rows:3}
+    ],
+    jog:['Read the reflection answers back in order','Look for the same word appearing three times','Ask a sibling the same question and compare'],
+    lists:[]
+  }
+];
+
+const LIST_DEFS = {
+  family:{
+    title:'Family, one at a time',
+    add:'Add a family member',
+    empty:'No one added yet. One entry each for parents, step-parents, siblings, grandparents, and any aunt, uncle or cousin who was properly part of it.',
+    note:'Do these separately rather than as a group. People behave differently one to one, and that\'s usually where the detail is.',
+    fields:[
+      {k:'name', t:'Name', type:'text', ph:'e.g. Dad, or Nan (Mum\'s mum)'},
+      {k:'rel', t:'Relationship', type:'text', ph:'e.g. older brother, 3 years up'},
+      {k:'like', t:'What they were like then', type:'area', ph:'Temperament, humour, work, health, what mood the house took from them', rows:3},
+      {k:'together', t:'What you actually did together', type:'area', ph:'The specific shared thing — a job in the garage, a walk, a match, a car journey, watching something', rows:3},
+      {k:'goton', t:'How you got on, and how that changed', type:'area', ph:'Close then distant, or the other way round. What you fell out over.', rows:3},
+      {k:'gave', t:'What you got from them — good or otherwise', type:'area', ph:'A skill, a standard, a fear, a way of speaking, a temper, a sense of humour', rows:3}
+    ]
+  },
+  rituals:{
+    title:'Rituals and routines',
+    add:'Add a ritual',
+    empty:'Nothing added yet. The repeated things — Sunday lunch, the same caravan every August, Friday chips, Boxing Day at an aunt\'s, the drive to a match.',
+    note:'Repetition is what childhood is mostly made of, and it\'s the first thing people forget to write down.',
+    fields:[
+      {k:'name', t:'What it was', type:'text', ph:'e.g. Sunday lunch at Nan\'s'},
+      {k:'when', t:'How often, and which years', type:'text', ph:'e.g. every Sunday, ages 5–13'},
+      {k:'detail', t:'How it went', type:'area', ph:'Who was there, the order of things, what was said, what you did while the adults talked', rows:3},
+      {k:'felt', t:'Whether you looked forward to it', type:'area', ph:'And what it gave you — or what it was really about', rows:2}
+    ]
+  },
+  people:{
+    title:'People — who you spent time with',
+    add:'Add a person',
+    empty:'No one added yet. Friends, teachers, coaches, neighbours, anyone outside the family who mattered.',
+    fields:[
+      {k:'name', t:'Name', type:'text', ph:''},
+      {k:'who', t:'Who they were to you', type:'text', ph:'e.g. best mate, lived two doors down'},
+      {k:'what', t:'What time with them was like, and what you got from it', type:'area', ph:'', rows:3}
+    ]
+  },
+  moments:{
+    title:'Moments — things that happened',
+    add:'Add a moment',
+    empty:'Nothing added yet. Good, bad, or just vivid — vividness is usually the signal that it mattered.',
+    fields:[
+      {k:'age', t:'Age', type:'text', ph:'e.g. 9'},
+      {k:'title', t:'What happened', type:'text', ph:'Short — like a headline'},
+      {k:'detail', t:'The detail you still remember', type:'area', ph:'Where you were, who was there, what was said', rows:3},
+      {k:'felt', t:'How it felt then, and what you make of it now', type:'area', ph:'', rows:3}
+    ]
+  }
+};
+
+/* ============================================================
+   STATE
+   ============================================================ */
+let data = {};
+let current = 0;
+let saveTimer = null;
+
+const esc = s => String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const path = (era,k) => data[era]?.[k] ?? '';
+const setStatus = t => document.getElementById('status').textContent = t;
+const stamp = () => new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+
+function queueSave(){
+  setStatus('Saving…');
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(()=>{
+    data.updatedAt = Date.now();
+    const ok = store.save(data);
+    setStatus(ok ? 'Saved on this device ' + stamp()
+                 : 'Not saved — your browser may be blocking storage. Export a copy.');
+    renderWall();
+  }, 600);
+}
+
+function progress(era){
+  const e = ERAS.find(x=>x.id===era);
+  let total = e.fields.length, done = 0;
+  e.fields.forEach(f=>{ if(String(path(era,f.k)).trim()) done++; });
+  if(e.fam){ e.fam.fields.forEach(f=>{ total++; if(String(path(era,f.k)).trim()) done++; }); }
+  (e.lists||[]).forEach(l=>{ total++; if((data[era]?.[l]||[]).length) done++; });
+  return total ? done/total : 0;
+}
+
+/* ============================================================
+   RENDER
+   ============================================================ */
+function renderWall(){
+  const wall = document.getElementById('wall');
+  wall.querySelectorAll('.course').forEach(n=>n.remove());
+  const narrow = window.innerWidth<=860;
+  ERAS.forEach((e,i)=>{
+    const b = document.createElement('button');
+    b.className='course';
+    b.setAttribute('aria-current', i===current?'true':'false');
+    const pct = Math.round(progress(e.id)*100);
+    b.innerHTML = `<span class="fill"><i style="${narrow?'width':'height'}:${pct}%"></i></span>
+      <span class="age">${esc(e.age)}</span><span class="nm">${esc(e.name)}</span>`;
+    b.onclick = ()=>{ current=i; render(); window.scrollTo({top:0,behavior:'smooth'}); };
+    wall.appendChild(b);
+  });
+}
+
+function render(){
+  const e = ERAS[current];
+  const w = document.getElementById('work');
+  let h = `<div class="era-eyebrow"><span class="label">Course ${current+1} of ${ERAS.length}</span><span class="rule"></span><span class="label">${esc(e.age)}</span></div>
+    <h2 class="era-title">${esc(e.name)}</h2>
+    <p class="era-intro">${e.intro}</p>`;
+
+  if(current===0){
+    h += `<div class="notice"><strong>Your writing is saved in this browser only.</strong> It stays private to this device and isn\'t sent anywhere. It won\'t appear on your other devices, and clearing your browser data will erase it — so use <em>Export as text</em> now and then to keep a copy.</div>`;
+  }
+
+  if(e.jog?.length){
+    h += `<div class="jog"><p class="label" style="color:var(--corten-deep)">To jog it loose</p>
+      <div class="chips">${e.jog.map(j=>`<span class="chip">${esc(j)}</span>`).join('')}</div></div>`;
+  }
+
+  let bn = 0;
+  const num = () => String(++bn).padStart(2,'0');
+
+  h += `<fieldset><div class="block-head"><span class="n">${num()}</span><span class="label">The record</span></div>`;
+  e.fields.forEach(f=>{
+    h += `<label class="fld"><span class="label"${f.reflect?' style="color:var(--corten)"':''}>${esc(f.t)}</span>
+      <textarea rows="${f.rows||3}" placeholder="${esc(f.ph)}" data-f="${f.k}">${esc(path(e.id,f.k))}</textarea></label>`;
+  });
+  h += `</fieldset>`;
+
+  if(e.fam){
+    h += `<fieldset><div class="block-head"><span class="n">${num()}</span><span class="label" style="color:var(--corten-deep)">Family at this age</span></div>`;
+    if(e.fam.note) h += `<p class="block-note">${esc(e.fam.note)}</p>`;
+    e.fam.fields.forEach(f=>{
+      h += `<label class="fld"><span class="label">${esc(f.t)}</span>
+        <textarea rows="${f.rows||4}" placeholder="${esc(f.ph)}" data-f="${f.k}">${esc(path(e.id,f.k))}</textarea></label>`;
+    });
+    h += `</fieldset>`;
+  }
+
+  (e.lists||[]).forEach(lk=>{
+    const def = LIST_DEFS[lk];
+    const items = data[e.id]?.[lk] || [];
+    h += `<fieldset><div class="block-head"><span class="n">${num()}</span><span class="label">${esc(def.title)}</span></div>`;
+    if(def.note) h += `<p class="block-note">${esc(def.note)}</p>`;
+    if(!items.length) h += `<p class="empty">${esc(def.empty)}</p>`;
+    items.forEach((it,i)=>{
+      h += `<div class="entry"><button class="del" data-del="${lk}" data-i="${i}">Remove</button>`;
+      const inline = def.fields.filter(f=>f.type==='text');
+      const blocks = def.fields.filter(f=>f.type!=='text');
+      if(inline.length){
+        h += `<div class="row">` + inline.map(f=>
+          `<label class="fld"><span class="label">${esc(f.t)}</span>
+           <input type="text" placeholder="${esc(f.ph||'')}" data-l="${lk}" data-i="${i}" data-f="${f.k}" value="${esc(it[f.k]||'')}"></label>`).join('') + `</div>`;
+      }
+      blocks.forEach(f=>{
+        h += `<label class="fld"><span class="label">${esc(f.t)}</span>
+          <textarea rows="${f.rows||3}" placeholder="${esc(f.ph||'')}" data-l="${lk}" data-i="${i}" data-f="${f.k}">${esc(it[f.k]||'')}</textarea></label>`;
+      });
+      h += `</div>`;
+    });
+    h += `<button class="add" data-add="${lk}">${esc(def.add)}</button></fieldset>`;
+  });
+
+  h += `<div class="nav-ends">`;
+  if(current>0) h += `<button class="btn ghost" data-go="${current-1}">← ${esc(ERAS[current-1].name)}</button>`;
+  if(current<ERAS.length-1) h += `<button class="btn ghost" data-go="${current+1}">${esc(ERAS[current+1].name)} →</button>`;
+  h += `</div>`;
+
+  w.innerHTML = h;
+
+  w.querySelectorAll('[data-f]').forEach(el=>{
+    el.addEventListener('input', ev=>{
+      const t = ev.target, era = ERAS[current].id;
+      data[era] = data[era] || {};
+      if(t.dataset.l) data[era][t.dataset.l][+t.dataset.i][t.dataset.f] = t.value;
+      else data[era][t.dataset.f] = t.value;
+      queueSave();
+    });
+  });
+  w.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>{
+    const era = ERAS[current].id, lk = b.dataset.add;
+    data[era] = data[era]||{}; data[era][lk] = data[era][lk]||[];
+    data[era][lk].push({}); queueSave(); render();
+  });
+  w.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>{
+    data[ERAS[current].id][b.dataset.del].splice(+b.dataset.i,1); queueSave(); render();
+  });
+  w.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{
+    current = +b.dataset.go; render(); window.scrollTo({top:0,behavior:'smooth'});
+  });
+
+  renderWall();
+}
+
+/* ============================================================
+   EXPORT
+   ============================================================ */
+function toText(){
+  let out = 'GROUNDWORK — a childhood record\nExported ' + new Date().toLocaleDateString() + '\n';
+  ERAS.forEach(e=>{
+    let body = '';
+    e.fields.forEach(f=>{
+      const v = String(path(e.id,f.k)).trim();
+      if(v) body += `### ${f.t}\n${v}\n\n`;
+    });
+    if(e.fam){
+      let fbody = '';
+      e.fam.fields.forEach(f=>{
+        const v = String(path(e.id,f.k)).trim();
+        if(v) fbody += `### ${f.t}\n${v}\n\n`;
+      });
+      if(fbody) body += `\n**Family at this age**\n\n` + fbody;
+    }
+    (e.lists||[]).forEach(lk=>{
+      const items = (data[e.id]?.[lk]||[]).filter(it=>Object.values(it).some(v=>String(v).trim()));
+      if(items.length){
+        body += `### ${LIST_DEFS[lk].title}\n`;
+        items.forEach(it=>{
+          LIST_DEFS[lk].fields.forEach(f=>{
+            const v = String(it[f.k]||'').trim();
+            if(v) body += `- **${f.t}:** ${v}\n`;
+          });
+          body += '\n';
+        });
+      }
+    });
+    if(body) out += `\n\n## ${e.name} (${e.age})\n\n` + body;
+  });
+  return out;
+}
+document.getElementById('exportBtn').onclick = ()=>{
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([toText()],{type:'text/markdown'}));
+  a.download = 'childhood-record.md'; a.click();
+  URL.revokeObjectURL(a.href); setStatus('Exported');
+};
+document.getElementById('printBtn').onclick = ()=>window.print();
+window.addEventListener('resize', renderWall);
+
+/* ============================================================
+   BOOT
+   ============================================================ */
+data = store.load() || {};
+render();
+setStatus(Object.keys(data).length ? 'Loaded your last version' : 'New record — nothing saved yet');
+</script>
+</body>
+</html>
